@@ -1,54 +1,161 @@
-/* Ensure the app takes full height */
 html, body, #root, .app {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #f8f9fa;
 }
 
-/* Main content padding to avoid overlap with fixed navbar */
 .main-content {
-  padding-top: 80px; /* Adjust based on navbar height */
+  padding-top: 90px;
   padding-bottom: 40px;
 }
 
-/* Ensure images are responsive */
-img {
-  max-width: 100%;
+.navbar-logo {
+  width: 30px;
   height: auto;
+  margin-right: 10px;
 }
 
-/* Custom styles for smaller screens */
-@media (max-width: 576px) {
-  .main-content {
-    padding-top: 60px; /* Smaller padding for mobile */
-  }
-
-  h1 {
-    font-size: 1.5rem; /* Smaller heading on mobile */
-  }
-
-  .card {
-    margin-bottom: 1rem;
-  }
+.app__title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #007bff;
+  transition: font-size 0.3s ease;
 }
 
-/* Medium screens (tablets) */
-@media (min-width: 577px) and (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
+.app__image {
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Large screens (desktops) */
-@media (min-width: 769px) {
-  h1 {
-    font-size: 2.5rem;
-  }
+.app__intro, .app__desc {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #555;
 }
 
-/* Footer styling */
+.app__problem {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.app__start {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #007bff;
+}
+
+.app__classify {
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.app__classify:hover {
+  transform: translateY(-2px);
+}
+
+.app__picker {
+  display: none;
+}
+
+.file-custom {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.drop-zone {
+  border: 2px dashed #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f1f4ff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.drop-zone.drop-zone-drag-over {
+  background-color: #e0e7ff;
+  border-color: #0056b3;
+}
+
+.drop-zone-text {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.result-item {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.result-top {
+  background-color: #e7f1ff;
+  font-weight: bold;
+}
+
 .footer {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+
+/* Mobile screens */
+@media (max-width: 576px) {
+  .main-content {
+    padding-top: 70px;
+  }
+  .app__title {
+    font-size: 2rem;
+  }
+  .app__image {
+    max-width: 150px;
+  }
+  .app__intro, .app__desc {
+    font-size: 1rem;
+  }
+  .app__problem {
+    font-size: 1.4rem;
+  }
+  .app__start {
+    font-size: 1.2rem;
+  }
+  .app__classify img {
+    max-height: 200px;
+  }
+  .file-custom {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+  .app__title {
+    font-size: 2.4rem;
+  }
+  .app__image {
+    max-width: 180px;
+  }
+  .app__problem {
+    font-size: 1.6rem;
+  }
+  .app__start {
+    font-size: 1.3rem;
+  }
+  .app__classify img {
+    max-height: 300px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 769px) {
+  .app__classify img {
+    max-height: 400px;
+  }
 }
