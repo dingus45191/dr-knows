@@ -1,74 +1,74 @@
-import React from "react";
-import "./App.css";
-// @ts-ignore
-import * as ml5 from "ml5";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React from 'react';
+import { Container, Navbar, Nav, Row, Col, Card, Button } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
+import './App.css';
 
-import Knows from "./knows.png"
-
-function App() {
-  const imageRef = useRef<any>();
-  const [results, setResults] = useState([]);
-  const [file, setFile] = useState();
-  const fileRef = useRef<HTMLInputElement>(null);
-  const classifyImg = () => {
-      const classifier = ml5.imageClassifier('MobileNet', ()=>{
-          console.log('Model has loaded')
-      });
-
-    //Make an AI prediction
-    classifier.predict(imageRef.current, 5, (err: any, results: any) => {
-      console.log(results);
-      setResults(results);
-    });
-  };
-
-  useEffect(() => {
-    classifyImg();
-  }, [file]);
-  const fileSelectHandler = (event: any) => {
-    setFile(event.target.files[0]);
-    let selectedFile = event.target.files[0];
-    let reader = new FileReader();
-
-    imageRef.current.title = selectedFile.name;
-
-    reader.onload = function (event: any) {
-      imageRef.current.src = event.target.result;
-    };
-
-    reader.readAsDataURL(selectedFile);
-
-    setFile(event.target.files[0]);
-  };
+const App: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: 576 });
 
   return (
     <div className="app">
-      <h1 className="app__title">Dr Knows</h1>
-      <img src={Knows} alt="Knows" className="app__image"/>
-      <p className="app__intro">The All knowing Dr Knows can tell you what's inside an image or what an image is of</p>
-      <h2 className="app__problem">We know your problem so we have a solution</h2>
-      <p className="app__desc">Just pick an image and we'll do the rest for you</p>
-       <h1 className="app__start">Get started now</h1>
-      <div className="app__classify">
-        <img ref={imageRef} id="image" alt="" />
-          <label className="file">
-              <input ref={fileRef} type="file" id="file" aria-label="File browser example" onChange={fileSelectHandler}  className="app__picker" />
-                  <span className="file-custom"></span>
-          </label>
-        {results?.map(({ label, confidence }) => (
-            <div key={confidence}>
-              <h4>
-                {label}: <em>{confidence}</em>
-              </h4>
-            </div>
-        ))}
-      </div>
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+        <Container>
+          <Navbar.Brand href="#home">Dr. Knows</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link href="#contact">Contact</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
 
+      <Container className="main-content">
+        <h1 className="text-center my-4">Welcome to Dr. Knows</h1>
+        {isMobile ? (
+          <div className="text-center">
+            <h3>Mobile View</h3>
+            <p>This content is optimized for mobile devices.</p>
+            {Array.from({ length: 3 }).map((_, idx) => (
+              <Card key={idx} className="mb-3">
+                <Card.Body>
+                  <Card.Title>Mobile Content {idx + 1}</Card.Title>
+                  <Card.Text>Simplified for mobile screens.</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <Row xs={1} md={2} lg={3} className="g-4">
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <Col key={idx}>
+                <Card className="h-100">
+                  <Card.Img
+                    variant="top"
+                    src="https://via.placeholder.com/150"
+                    alt="Sample"
+                    className="img-fluid"
+                  />
+                  <Card.Body>
+                    <Card.Title>Content {idx + 1}</Card.Title>
+                    <Card.Text>
+                      This is a sample card that adjusts to screen size.
+                    </Card.Text>
+                    <Button variant="primary">Learn More</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        )}
+      </Container>
+
+      <footer className="footer bg-dark text-white text-center py-3">
+        <Container>
+          <p>&copy; 2025 Dr. Knows. All rights reserved.</p>
+        </Container>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
