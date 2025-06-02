@@ -1,51 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* Ensure the app takes full height */
+html, body, #root, .app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-.app{
-    font-family: Poppins, sans-serif;
+/* Main content padding to avoid overlap with fixed navbar */
+.main-content {
+  padding-top: 80px; /* Adjust based on navbar height */
+  padding-bottom: 40px;
 }
-.app__title{
-    font-size: 35px;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-left: 540px;
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
 }
-.app__detail{
-    margin-left: 38%;
-    margin-top: -38px;
+
+/* Custom styles for smaller screens */
+@media (max-width: 576px) {
+  .main-content {
+    padding-top: 60px; /* Smaller padding for mobile */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Smaller heading on mobile */
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
 }
-.app__intro{
-    font-size: 20px;
-    padding: 200px 200px 200px 10px;
+
+/* Medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
-.app__image{
-    height: 600px;
-    width: 500px;
-    float: right;
+
+/* Large screens (desktops) */
+@media (min-width: 769px) {
+  h1 {
+    font-size: 2.5rem;
+  }
 }
-.app__problem{
-    margin-top: 80px;
-    margin-left: 12em;
-    margin-bottom: 80px;
-    padding: 60px;
-}
-.app__desc{
-    padding: 110px;
-    margin-left: 280px;
-    font-style: italic;
-    font-size: 16px;
-}
-.app__start{
-    margin-left: 410px;
-}
-.app__classify{
-    padding: 80px;
-    padding-left: 30em;
-}
-.app__picker{
-    margin: 0;
-    padding: 2rem 1.5rem;
-    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
-    color: #ced4da;
-    border-radius: 99px;
-    margin-right: 28px;
+
+/* Footer styling */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
